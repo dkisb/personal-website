@@ -1,3 +1,6 @@
+import TechStack from './TechStack';
+import Divider from './Divider';
+
 export default function About() {
   return (
     <section id="about" className="py-16 px-4 max-w-4xl mx-auto">
@@ -14,20 +17,12 @@ export default function About() {
           I enjoy turning complex problems into simple, beautiful interfaces and learning new tools that improve both
           developer experience and performance.
         </p>
-
-        <div className="mt-6">
-          <h3 className="text-xl font-semibold mb-2">Tech Stack:</h3>
-          <div className="flex flex-wrap gap-2">
-            <div className="badge badge-outline">React</div>
-            <div className="badge badge-outline">Vite</div>
-            <div className="badge badge-outline">Tailwind CSS</div>
-            <div className="badge badge-outline">DaisyUI</div>
-            <div className="badge badge-outline">Spring Boot</div>
-            <div className="badge badge-outline">PostgreSQL</div>
-            <div className="badge badge-outline">Java</div>
-            <div className="badge badge-outline">Git</div>
-          </div>
-        </div>
+        <Divider />
+        <Divider />
+        <Divider />
+        <Divider />
+        <Divider />
+        <TechStack />
       </div>
     </section>
   );

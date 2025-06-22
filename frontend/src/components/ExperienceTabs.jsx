@@ -1,53 +1,62 @@
 import { useState } from 'react';
+import { Box, Container, Tabs, Tab, Typography, Paper } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
-const ExperienceTabs = () => {
+export default function ExperienceTabs() {
   const [activeTab, setActiveTab] = useState('education');
+  const { t } = useTranslation();
+
+  const handleTabChange = (_, newValue) => {
+    setActiveTab(newValue);
+  };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12">
-      <h2 className="text-4xl font-bold text-center mb-8">Experience</h2>
+    <Box py={10}>
+      <Container maxWidth="md">
+        <Typography variant="h4" align="center" fontWeight="bold" gutterBottom>
+          {t('experience.title')}
+        </Typography>
 
-      <div role="tablist" className="tabs tabs-boxed justify-center mb-6">
-        <button
-          role="tab"
-          className={`tab ${activeTab === 'education' ? 'tab-active' : ''}`}
-          onClick={() => setActiveTab('education')}
+        <Tabs
+          value={activeTab}
+          onChange={handleTabChange}
+          centered
+          textColor="primary"
+          indicatorColor="primary"
+          sx={{ mb: 4 }}
         >
-          Education
-        </button>
-        <button
-          role="tab"
-          className={`tab ${activeTab === 'work' ? 'tab-active' : ''}`}
-          onClick={() => setActiveTab('work')}
-        >
-          Work
-        </button>
-      </div>
+          <Tab label={t('experience.tabs.education')} value="education" />
+          <Tab label={t('experience.tabs.work')} value="work" />
+        </Tabs>
 
-      <div className="space-y-6">
         {activeTab === 'education' && (
-          <div className="card bg-base-200 p-6 shadow">
-            <h3 className="text-xl font-semibold">BSc Computer Science</h3>
-            <p className="text-sm text-gray-500">XYZ University · 2019–2022</p>
-            <p className="mt-2">
-              Studied software engineering, algorithms, and full stack web development. Graduated with distinction.
-            </p>
-          </div>
+          <Paper elevation={3} sx={{ p: 4 }}>
+            <Typography variant="h6" fontWeight="600">
+              {t('experience.education.title')}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {t('experience.education.institution')}
+            </Typography>
+            <Typography variant="body1" mt={2}>
+              {t('experience.education.description')}
+            </Typography>
+          </Paper>
         )}
 
         {activeTab === 'work' && (
-          <div className="card bg-base-200 p-6 shadow">
-            <h3 className="text-xl font-semibold">Full Stack Developer</h3>
-            <p className="text-sm text-gray-500">ABC Tech · 2022–Present</p>
-            <p className="mt-2">
-              Building scalable web apps with React, Spring Boot, and PostgreSQL. Led front-end migration to Vite +
-              Tailwind.
-            </p>
-          </div>
+          <Paper elevation={3} sx={{ p: 4 }}>
+            <Typography variant="h6" fontWeight="600">
+              {t('experience.work.title')}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {t('experience.work.company')}
+            </Typography>
+            <Typography variant="body1" mt={2}>
+              {t('experience.work.description')}
+            </Typography>
+          </Paper>
         )}
-      </div>
-    </div>
+      </Container>
+    </Box>
   );
-};
-
-export default ExperienceTabs;
+}

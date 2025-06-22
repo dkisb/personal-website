@@ -1,20 +1,35 @@
+import { Box, Container, Typography, Button } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+
 export default function Hero() {
+  const { t } = useTranslation();
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content flex-col lg:flex-row">
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-          className="max-w-sm rounded-lg shadow-2xl"
-        />
-        <div>
-          <h1 className="text-5xl font-bold">Box Office News!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In
-            deleniti eaque aut repudiandae et a id nisi.
-          </p>
-          <button className="btn btn-primary">Get Started</button>
-        </div>
-      </div>
-    </div>
+    <Box
+      component="section"
+      id="hero"
+      sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        bgcolor: 'background.default',
+        pt: { xs: 8, md: 10 }, // to avoid overlap with fixed navbar
+      }}
+    >
+      <Container maxWidth="md">
+        <Box textAlign={{ xs: 'center', md: 'center' }}>
+          <Typography variant="h3" fontWeight="bold" gutterBottom>
+            {t('hero.title')}
+          </Typography>
+
+          <Typography variant="h5" color="text.secondary" gutterBottom>
+            {t('hero.subtitle')}
+          </Typography>
+
+          <Button variant="contained" color="primary" size="large" href="/contact" sx={{ mt: 4 }}>
+            {t('hero.cta')}
+          </Button>
+        </Box>
+      </Container>
+    </Box>
   );
 }

@@ -1,17 +1,48 @@
-import { techStacks } from '../data/techstacks';
+import { Box, Typography, Grid, Paper } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { techStacks as rawTechStacks } from '../data/techstacks';
 
-const TechStack = () => (
-  <section className="max-w-3xl mx-auto text-center">
-    <h2 className="text-3xl font-bold mb-6">Tech Stack</h2>
-    <div className="flex flex-wrap justify-center gap-4">
-      {techStacks.map(({ name, Icon }, index) => (
-        <div key={index} className="flex items-center gap-2 px-4 py-2 bg-base-200 rounded-lg shadow-sm">
-          <Icon className="w-5 h-5" />
-          <span className="text-sm font-medium">{name}</span>
-        </div>
-      ))}
-    </div>
-  </section>
-);
+const TechStack = () => {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+
+  const techStacks = rawTechStacks.map((stack) => {
+    const { Icon } = stack;
+    const resolvedIcon = typeof Icon === 'object' ? (isDark ? Icon.dark : Icon.light) : Icon;
+    return { ...stack, Icon: resolvedIcon };
+  });
+
+  return (
+    <Box textAlign="center" mt={6}>
+      <Typography variant="h5" fontWeight="bold" gutterBottom>
+        Tech Stack
+      </Typography>
+
+      <Grid container spacing={2} columns={{ xs: 6, sm: 8, md: 12 }} justifyContent="center">
+        {techStacks.map(({ name, Icon }, index) => (
+          <Grid key={index} gridColumn={{ xs: 'span 3', sm: 'span 2', md: 'span 2' }}>
+            <Paper
+              elevation={1}
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 1,
+                p: 2,
+                height: '100%',
+                borderRadius: 2,
+              }}
+            >
+              <Icon style={{ width: 28, height: 28 }} />
+              <Typography variant="body2" fontWeight={500} textAlign="center">
+                {name}
+              </Typography>
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
+};
 
 export default TechStack;

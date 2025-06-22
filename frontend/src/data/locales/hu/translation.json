@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "title": "Üdvözöllek a Portfóliómban",
+    "subtitle": "Full Stack Developer Magyarországról",
+    "cta": "Elérhetőségek"
+  },
+  "navbar": {
+    "home": "Kezdőlap",
+    "about": "Rólam",
+    "projects": "Projektek",
+    "contact": "Kapcsolat",
+    "language": "Nyelv",
+    "themeToggle": "Téma váltása"
+  },
+  "about": {
+    "title": "Rólam",
+    "intro": "Üdvözöllek, én ",
+    "name": "Kisbalázs Marcell Döme vagyok  ",
+    "description": "egy Full Stack fejlesztő. Tapasztalatom van a frontend és a backend fejlesztés területén is, és élvezem azokat a projekteket, amelyek kihívást jelentenek a képességeimnek és a kreativitásomnak.",
+    "moreInfo": "Folyamatosan törekszem arra, hogy fejlesszem a tudásomat és a képességeimet a szoftverfejlesztés területén."
+  },
+  "contact": {
+    "title": "Lépjünk kapcsolatba",
+    "subtitle": "Amennyiben szeretne kapcsolatba lépni velem, az alábbi platformokon megtalál.",
+    "downloadCv": "Önéletrajz letöltése"
+  },
+  "projects": { "title": "Projektek" },
+  "footer": {
+    "explore": "További oldalak",
+    "home": "Kezdőlap",
+    "about": "Rólam",
+    "projects": "Projektek",
+    "contact": "Kapcsolat",
+    "connect": "Elérhetőségek",
+    "rights": "Minden jog fenntartva: Döme Marcell Kisbalázs"
+  },
+  "experience": {
+    "title": "Tapasztalat",
+    "tabs": {
+      "education": "Oktatás",
+      "work": "Munka"
+    },
+    "education": {
+      "title": "Full Stack Fejlesztői Bootcamp",
+      "institution": "Codecool · 2024–2025",
+      "description": "Szoftvermérnöki alapok, algoritmusok és full stack webfejlesztési tanulmányok."
+    },
+    "work": {
+      "title": "",
+      "company": "",
+      "description": ""
+    }
+  }
+}

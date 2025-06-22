@@ -1,0 +1,56 @@
+{
+  "hero": {
+    "title": "Welcome to my Portfolio",
+    "subtitle": "Full Stack Developer based in Hungary",
+    "cta": "Contact Me"
+  },
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "language": "Language",
+    "themeToggle": "Toggle Theme"
+  },
+  "about": {
+    "title": "About Me",
+    "intro": "Hi, I'm ",
+    "name": "Döme Marcell Kisbalázs ",
+    "description": "a Full Stack Developer with a passion for creating dynamic and responsive web applications. I have experience in both frontend and backend development, and I enjoy working on projects that challenge my skills and creativity .",
+    "moreInfo": "I am constantly seeking to improve my skills and knowledge in the field of software development."
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "I'd love to connect! Reach out through any of the platforms below.",
+    "downloadCv": "Download CV"
+  },
+  "projects": { "title": "Projects" },
+
+  "footer": {
+    "name": "Döme Marcell Kisbalázs",
+    "explore": "Also see",
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "connect": "Connect",
+    "rights": "All rights reserved by Döme Marcell Kisbalázs"
+  },
+  "experience": {
+    "title": "Experience",
+    "tabs": {
+      "education": "Education",
+      "work": "Work"
+    },
+    "education": {
+      "title": "Full Stack Developer Bootcamp",
+      "institution": "Codecool · 2024–2025",
+      "description": "Studied software engineering, algorithms, and full stack web development."
+    },
+    "work": {
+      "title": "",
+      "company": "",
+      "description": ""
+    }
+  }
+}

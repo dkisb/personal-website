@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
+import { ThemeWrapper } from './data/ThemeContext';
+import './data/i18n';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ThemeWrapper>
+      <RouterProvider router={router} />
+    </ThemeWrapper>
   </StrictMode>
 );

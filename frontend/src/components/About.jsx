@@ -1,29 +1,76 @@
-import TechStack from './TechStack';
-import Divider from './Divider';
+import { Container, Typography, Paper, Box, Grid } from '@mui/material';
+import selfie from '../assets/selfie.jpg';
+import { useTranslation } from 'react-i18next';
 
 export default function About() {
+  const { t } = useTranslation();
   return (
-    <section id="about" className="py-16 px-4 max-w-4xl mx-auto">
-      <h2 className="text-4xl font-bold text-center mb-8">About Me</h2>
+    <Box component="section" id="about" py={{ xs: 8, md: 12 }}>
+      <Container maxWidth="lg">
+        <Typography variant="h3" align="center" fontWeight="bold" gutterBottom sx={{ mb: { xs: 4, md: 6 } }}>
+          {t('about.title')}
+        </Typography>
 
-      <div className="card bg-base-200 shadow-md p-6 md:p-10">
-        <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-          Hi! I'm <span className="font-semibold">[Your Name]</span>, a passionate full stack developer with a love for
-          crafting elegant, scalable, and user-centric web applications. I specialize in building with React, Tailwind,
-          and modern backend technologies like Spring Boot and PostgreSQL.
-        </p>
+        <Grid
+          container
+          spacing={4}
+          justifyContent="center"
+          alignItems="stretch"
+          direction={{ xs: 'column', md: 'row' }}
+        >
+          {/* Text Box */}
+          <Grid gridColumn={{ xs: 'span 12', md: 'auto' }}>
+            <Paper
+              elevation={3}
+              sx={{
+                width: { xs: '100%', md: 420 },
+                height: '100%',
+                p: { xs: 3, md: 5 },
+                bgcolor: 'background.paper',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+              }}
+            >
+              <Typography variant="body1">
+                {t('about.intro')}
+                <Typography component="span" fontWeight={600} display="inline">
+                  {t('about.name')}
+                </Typography>
+                {t('about.description')}
+              </Typography>
+              <Typography variant="body1">{t('about.moreInfo')}</Typography>
+            </Paper>
+          </Grid>
 
-        <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
-          I enjoy turning complex problems into simple, beautiful interfaces and learning new tools that improve both
-          developer experience and performance.
-        </p>
-        <Divider />
-        <Divider />
-        <Divider />
-        <Divider />
-        <Divider />
-        <TechStack />
-      </div>
-    </section>
+          {/* Image Box */}
+          <Grid gridColumn={{ xs: 'span 12', md: 'auto' }}>
+            <Paper
+              elevation={3}
+              sx={{
+                width: { xs: '100%', md: 420 },
+                height: '100%',
+                p: 2,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                bgcolor: 'background.paper',
+              }}
+            >
+              <Box
+                component="img"
+                src={selfie}
+                alt="Self portrait"
+                sx={{
+                  width: '100%',
+                  height: 'auto',
+                  borderRadius: 2,
+                }}
+              />
+            </Paper>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 }

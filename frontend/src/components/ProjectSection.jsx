@@ -1,22 +1,25 @@
+import { Box, Container, Grid, Typography } from '@mui/material';
 import ProjectCard from './ProjectCard';
+import { projects } from '../data/projects';
+import { useTranslation } from 'react-i18next';
 
 const ProjectSection = () => {
+  const { t } = useTranslation();
   return (
-    <section id="projects" className="py-16 px-4 max-w-6xl mx-auto">
-      <h2 className="text-4xl font-bold text-center mb-10">Projects</h2>
-      <div className="flex flex-wrap gap-6 justify-center">
-        <ProjectCard
-          title="E-Commerce App"
-          image={'https://via.placeholder.com/300'}
-          description="A full-stack e-commerce store built with React, Spring Boot, and Stripe."
-          tech={['React', 'Tailwind', 'Spring Boot']}
-          github="https://github.com/yourusername/ecommerce"
-          demo="https://ecommerce-demo.vercel.app"
-          isNew={true}
-        />
-        {/* More cards here */}
-      </div>
-    </section>
+    <Box component="section" id="projects" py={10}>
+      <Container maxWidth="lg">
+        <Typography variant="h3" fontWeight="bold" align="center" gutterBottom>
+          {t('projects.title')}
+        </Typography>
+        <Grid container spacing={4} justifyContent="center">
+          {projects.map((project, index) => (
+            <Grid item key={index} xs={12} sm={6} md={4}>
+              <ProjectCard {...project} />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 

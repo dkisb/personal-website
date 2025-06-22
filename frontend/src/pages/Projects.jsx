@@ -1,11 +1,12 @@
+import { Box, Container } from '@mui/material';
 import ProjectSection from '../components/ProjectSection';
 
-const ProjectsPage = () => {
-  return (
-    <div className="px-4 py-8">
+const ProjectsPage = () => (
+  <Box py={8}>
+    <Container maxWidth="lg">
       <ProjectSection />
-    </div>
-  );
-};
+    </Container>
+  </Box>
+);
 
 export default ProjectsPage;

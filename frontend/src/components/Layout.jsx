@@ -1,15 +1,23 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { Box, Container, useTheme } from '@mui/material';
+import { useContext } from 'react';
+import { ColorModeContext } from '../data/ThemeContext';
 
 export default function Layout() {
+  const theme = useTheme();
+  const colorMode = useContext(ColorModeContext);
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-grow">
-        <Outlet />
-      </main>
+    <Box display="flex" flexDirection="column" minHeight="100vh">
+      <Navbar toggleTheme={colorMode.toggleColorMode} mode={theme.palette.mode} />
+      <Box component="main" flexGrow={1} py={4}>
+        <Container>
+          <Outlet />
+        </Container>
+      </Box>
       <Footer />
-    </div>
+    </Box>
   );
 }

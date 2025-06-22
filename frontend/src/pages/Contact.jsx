@@ -1,11 +1,12 @@
+import { Box, Container } from '@mui/material';
 import Contact from '../components/Contact';
 
-const ContactPage = () => {
-  return (
-    <div className="px-4 py-8">
+const ContactPage = () => (
+  <Box py={8}>
+    <Container maxWidth="sm">
       <Contact />
-    </div>
-  );
-};
+    </Container>
+  </Box>
+);
 
 export default ContactPage;

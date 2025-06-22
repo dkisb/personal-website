@@ -1,46 +1,73 @@
 import React, { useState } from 'react';
+import { Card, CardActionArea, CardContent, Typography, Chip, Box, Stack } from '@mui/material';
+import NewReleasesIcon from '@mui/icons-material/NewReleases';
 
 const ProjectCard = ({ title, image, description, tech, github, demo, isNew }) => {
   const [tags, setTags] = useState(tech);
-
-  const handleTagEdit = (index, value) => {
-    const updated = [...tags];
-    updated[index] = value;
-    setTags(updated);
-  };
 
   const handleCardClick = () => {
     window.open(demo || github, '_blank');
   };
 
   return (
-    <div
-      className="card bg-base-100 w-96 shadow-sm cursor-pointer transition-transform hover:scale-[1.02]"
+    <Card
+      sx={{
+        width: 360,
+        transition: 'transform 0.2s',
+        '&:hover': { transform: 'scale(1.02)' },
+        cursor: 'pointer',
+      }}
       onClick={handleCardClick}
+      elevation={3}
     >
-      <figure>
-        <img src={image} alt={title} className="h-60 object-cover w-full" />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">
-          {title}
-          {isNew && <div className="badge badge-secondary">NEW</div>}
-        </h2>
-        <p>{description}</p>
-        <div className="card-actions justify-start flex-wrap gap-2 mt-2">
-          {tags.map((tag, i) => (
-            <input
-              key={i}
-              type="text"
-              value={tag}
-              onChange={(e) => handleTagEdit(i, e.target.value)}
-              className="input input-xs input-bordered w-auto"
-              onClick={(e) => e.stopPropagation()}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
+      <CardActionArea>
+        <Box
+          sx={{
+            height: 200,
+            backgroundImage: `url(${image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            borderTopLeftRadius: 4,
+            borderTopRightRadius: 4,
+          }}
+        />
+
+        <CardContent>
+          <Box display="flex" alignItems="center" gap={1} mb={1}>
+            <Typography variant="h6" component="div" fontWeight={600}>
+              {title}
+            </Typography>
+            {isNew && <Chip label="NEW" color="secondary" size="small" icon={<NewReleasesIcon fontSize="small" />} />}
+          </Box>
+
+          <Typography variant="body2" color="text.secondary" mb={2}>
+            {description}
+          </Typography>
+
+          <Stack direction="row" spacing={1} flexWrap="wrap">
+            {tags.map((Icon, i) => (
+              <Box
+                key={i}
+                onClick={(e) => e.stopPropagation()}
+                sx={{
+                  p: 0.5,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  bgcolor: 'background.paper',
+                  borderRadius: 1,
+                  boxShadow: 1,
+                  width: 32,
+                  height: 32,
+                }}
+              >
+                <Icon style={{ width: 20, height: 20 }} />
+              </Box>
+            ))}
+          </Stack>
+        </CardContent>
+      </CardActionArea>
+    </Card>
   );
 };
 

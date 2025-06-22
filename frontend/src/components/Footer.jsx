@@ -1,5 +1,6 @@
 import { Box, Container, Typography, Stack, IconButton, Divider, Link as MuiLink } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
 import { useTheme } from '@mui/material/styles';
 import { Twitter, GitHubLight, GitHubDark, LinkedIn, Gmail } from 'developer-icons';
 import { useTranslation } from 'react-i18next';
@@ -9,8 +10,19 @@ export default function Footer() {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
   const { t } = useTranslation();
+  const location = useLocation(); // Get current route
 
   const GitHubIcon = isDark ? GitHubLight : GitHubDark;
+
+  const navItems = [
+    { text: t('footer.home'), section: 'hero', route: '/', offset: 0 },
+    { text: t('footer.about'), section: 'about', route: '/about', offset: 0 },
+    { text: t('footer.projects'), section: 'projects', route: '/projects', offset: 0 },
+    { text: t('footer.contact'), section: '/contact', route: '/contact', isExternal: true },
+  ];
+
+  // Check if we're on the home page to use react-scroll
+  const isHomePage = location.pathname === '/';
 
   return (
     <Box component="footer" bgcolor="background.paper" py={6} mt={10}>
@@ -46,42 +58,19 @@ export default function Footer() {
               {t('footer.explore')}
             </Typography>
             <Stack spacing={1}>
-              <MuiLink
-                component={RouterLink}
-                to="/"
-                color="text.primary"
-                underline="hover"
-                onClick={() => window.scrollTo(0, 0)}
-              >
-                {t('footer.home')}
-              </MuiLink>
-              <MuiLink
-                component={RouterLink}
-                to="/about"
-                color="text.primary"
-                underline="hover"
-                onClick={() => window.scrollTo(0, 0)}
-              >
-                {t('footer.about')}
-              </MuiLink>
-              <MuiLink
-                component={RouterLink}
-                to="/projects"
-                color="text.primary"
-                underline="hover"
-                onClick={() => window.scrollTo(0, 0)}
-              >
-                {t('footer.projects')}
-              </MuiLink>
-              <MuiLink
-                component={RouterLink}
-                to="/contact"
-                color="text.primary"
-                underline="hover"
-                onClick={() => window.scrollTo(0, 0)}
-              >
-                {t('footer.contact')}
-              </MuiLink>
+              {navItems.map(({ text, section, route, isExternal, offset }) => (
+                <MuiLink
+                  key={text}
+                  component={isExternal || !isHomePage ? RouterLink : ScrollLink}
+                  {...(isExternal || !isHomePage
+                    ? { to: route }
+                    : { to: section, spy: true, smooth: true, duration: 500, offset })}
+                  color="text.primary"
+                  underline="hover"
+                >
+                  {text}
+                </MuiLink>
+              ))}
             </Stack>
           </Box>
 
@@ -134,7 +123,7 @@ export default function Footer() {
         <Divider sx={{ my: 3 }} />
 
         <Typography variant="body2" color="text.secondary" align="center">
-          &copy; {new Date().getFullYear()} – {t('footer.rights')}
+          © {new Date().getFullYear()} – {t('footer.rights')}
         </Typography>
       </Container>
     </Box>

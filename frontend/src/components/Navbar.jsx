@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import {
   Box,
-  Button,
-  Stack,
   IconButton,
   Drawer,
   List,
@@ -13,20 +12,21 @@ import {
   useMediaQuery,
   useTheme,
   Divider,
-  Menu,
-  MenuItem,
+  Stack,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { useTranslation } from 'react-i18next';
+import NavButtons from './NavButtons';
+import NavToggles from './NavToggles';
 
 export default function Navbar({ toggleTheme, mode }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { t, i18n } = useTranslation();
+  const location = useLocation();
 
   const languages = [
     { code: 'en', flag: '/en.svg' },
@@ -34,22 +34,14 @@ export default function Navbar({ toggleTheme, mode }) {
     { code: 'hu', flag: '/hu.svg' },
   ];
 
-  const langCode = (i18n.language || 'en').split('-')[0];
-  const currentLang = languages.find((l) => l.code === langCode) || languages[0];
-  const otherLanguages = languages.filter((l) => l.code !== i18n.language);
   const navItems = [
-    { text: t('navbar.home'), path: '/' },
-    { text: t('navbar.about'), path: '/about' },
-    { text: t('navbar.projects'), path: '/projects' },
-    { text: t('navbar.contact'), path: '/contact' },
+    { text: t('navbar.home'), section: 'hero', route: '/', offset: 0 },
+    { text: t('navbar.about'), section: 'about', route: '/about', offset: 0 },
+    { text: t('navbar.projects'), section: 'projects', route: '/projects', offset: 0 },
+    { text: t('navbar.contact'), section: '/contact', route: '/contact', isExternal: true },
   ];
 
-  const handleLangClick = (event) => setAnchorEl(event.currentTarget);
-  const handleLangClose = () => setAnchorEl(null);
-  const changeLanguage = (code) => {
-    i18n.changeLanguage(code);
-    handleLangClose();
-  };
+  const isHomePage = location.pathname === '/';
 
   return (
     <>
@@ -61,9 +53,9 @@ export default function Navbar({ toggleTheme, mode }) {
           top: 0,
           left: 0,
           width: '100%',
+          display: 'flex',
           height: 80,
           zIndex: 10,
-          display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           px: 3,
@@ -73,7 +65,6 @@ export default function Navbar({ toggleTheme, mode }) {
           boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
         }}
       >
-        {/* Centered Nav Items */}
         {isMobile ? (
           <>
             <Box sx={{ position: 'absolute', right: 24 }}>
@@ -85,27 +76,41 @@ export default function Navbar({ toggleTheme, mode }) {
             <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
               <Box sx={{ width: 240, mt: 2 }} role="presentation" onClick={() => setDrawerOpen(false)}>
                 <List>
-                  {navItems.map(({ text, path }) => (
+                  {navItems.map(({ text, section, route, isExternal, offset }) => (
                     <ListItem key={text} disablePadding>
                       <ListItemText
                         primary={
-                          <RouterLink to={path} style={{ textDecoration: 'none', color: 'inherit' }}>
-                            {text}
-                          </RouterLink>
+                          isExternal ? (
+                            <a href={section} style={{ textDecoration: 'none', color: 'inherit' }}>
+                              {text}
+                            </a>
+                          ) : isHomePage ? (
+                            <ScrollLink
+                              to={section}
+                              spy={true}
+                              smooth={true}
+                              duration={500}
+                              offset={offset}
+                              style={{ textDecoration: 'none', color: 'inherit' }}
+                            >
+                              {text}
+                            </ScrollLink>
+                          ) : (
+                            <RouterLink to={route} style={{ textDecoration: 'none', color: 'inherit' }}>
+                              {text}
+                            </RouterLink>
+                          )
                         }
                         sx={{ px: 2, py: 1 }}
                       />
                     </ListItem>
                   ))}
-
                   <Divider sx={{ my: 1 }} />
-
                   <ListItem>
                     <IconButton onClick={toggleTheme} color="inherit">
                       {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
                     </IconButton>
                   </ListItem>
-
                   <ListItem>
                     <Stack direction="row" spacing={1} alignItems="center">
                       {languages.map(({ code, flag }) => (
@@ -125,60 +130,12 @@ export default function Navbar({ toggleTheme, mode }) {
             </Drawer>
           </>
         ) : (
-          <Stack direction="row" spacing={3} alignItems="center">
-            {navItems.map(({ text, path }) => (
-              <Button
-                key={text}
-                component={RouterLink}
-                to={path}
-                color="inherit"
-                variant="contained"
-                sx={{
-                  fontWeight: 700,
-                  textTransform: 'none',
-                  borderRadius: 5,
-                  px: 3,
-                  py: 1,
-                  fontSize: '1rem',
-                }}
-              >
-                {text}
-              </Button>
-            ))}
-          </Stack>
-        )}
-
-        {/* Right: Language + Dark Mode */}
-        {!isMobile && (
-          <Stack direction="row" spacing={1} alignItems="center" sx={{ position: 'absolute', right: 24 }}>
-            {/* Language Dropdown */}
-            <IconButton onClick={handleLangClick}>
-              <Box
-                component="img"
-                src={currentLang.flag}
-                alt={currentLang.code}
-                sx={{ width: 24, height: 24, borderRadius: '50%' }}
-              />
-            </IconButton>
-            <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleLangClose}>
-              {otherLanguages.map(({ code, flag }) => (
-                <MenuItem key={code} onClick={() => changeLanguage(code)}>
-                  <Box
-                    component="img"
-                    src={flag}
-                    alt={code}
-                    sx={{ width: 24, height: 24, borderRadius: '50%', mr: 1 }}
-                  />
-                  {code.toUpperCase()}
-                </MenuItem>
-              ))}
-            </Menu>
-
-            {/* Dark Mode Toggle */}
-            <IconButton onClick={toggleTheme} color="inherit">
-              {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-            </IconButton>
-          </Stack>
+          <>
+            <NavButtons navItems={navItems} isHomePage={isHomePage} />
+            <Box sx={{ position: 'absolute', right: 24 }}>
+              <NavToggles mode={mode} toggleTheme={toggleTheme} languages={languages} i18n={i18n} />
+            </Box>
+          </>
         )}
       </Box>
     </>

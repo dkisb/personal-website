@@ -1,6 +1,8 @@
 import { Container, Typography, Paper, Box, Grid } from '@mui/material';
 import selfie from '../assets/selfie.jpg';
 import { useTranslation } from 'react-i18next';
+import ExperienceTabs from './ExperienceTabs';
+import TechStack from './TechStack';
 
 export default function About() {
   const { t } = useTranslation();
@@ -70,6 +72,8 @@ export default function About() {
             </Paper>
           </Grid>
         </Grid>
+        <ExperienceTabs />
+         <TechStack />
       </Container>
     </Box>
   );

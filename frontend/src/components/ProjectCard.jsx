@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Card, CardActionArea, CardContent, Typography, Chip, Box, Stack } from '@mui/material';
 import NewReleasesIcon from '@mui/icons-material/NewReleases';
 
@@ -12,10 +12,15 @@ const ProjectCard = ({ title, image, description, tech, github, demo, isNew }) =
   return (
     <Card
       sx={{
-        width: 360,
+        width: '100%',
+        maxWidth: 400,
+        mx: 'auto',
+        height: 420,
         transition: 'transform 0.2s',
         '&:hover': { transform: 'scale(1.02)' },
         cursor: 'pointer',
+        display: 'flex',
+        flexDirection: 'column',
       }}
       onClick={handleCardClick}
       elevation={3}
@@ -23,7 +28,7 @@ const ProjectCard = ({ title, image, description, tech, github, demo, isNew }) =
       <CardActionArea>
         <Box
           sx={{
-            height: 200,
+            height: 160,
             backgroundImage: `url(${image})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',

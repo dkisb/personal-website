@@ -1,7 +1,7 @@
 {
   "hero": {
-    "title": "Welcome to my Portfolio",
-    "subtitle": "Full Stack Developer based in Hungary",
+    "title": "Welcome to my Portfolio!",
+    "subtitle": "Full Stack Developer",
     "cta": "Contact Me"
   },
   "navbar": {
@@ -24,7 +24,7 @@
     "subtitle": "I'd love to connect! Reach out through any of the platforms below.",
     "downloadCv": "Download CV"
   },
-  "projects": { "title": "Projects" },
+  "projects": { "title": "Featured Projects" },
 
   "footer": {
     "name": "Döme Marcell Kisbalázs",

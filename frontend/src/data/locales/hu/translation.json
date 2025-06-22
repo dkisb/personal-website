@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Üdvözöllek a Portfóliómban",
-    "subtitle": "Full Stack Developer Magyarországról",
+    "subtitle": "Full Stack Developer",
     "cta": "Elérhetőségek"
   },
   "navbar": {
@@ -24,7 +24,7 @@
     "subtitle": "Amennyiben szeretne kapcsolatba lépni velem, az alábbi platformokon megtalál.",
     "downloadCv": "Önéletrajz letöltése"
   },
-  "projects": { "title": "Projektek" },
+  "projects": { "title": "Kiemelt projektek" },
   "footer": {
     "explore": "További oldalak",
     "home": "Kezdőlap",

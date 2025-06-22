@@ -12,7 +12,7 @@ export default function Layout() {
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <Navbar toggleTheme={colorMode.toggleColorMode} mode={theme.palette.mode} />
-      <Box component="main" flexGrow={1} py={4}>
+      <Box component="main" flexGrow={1} py={2}>
         <Container>
           <Outlet />
         </Container>

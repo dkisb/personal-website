@@ -5,34 +5,34 @@
     "cta": "Kontakt"
   },
   "navbar": {
-    "home": "Startseite",
+    "home": "Home",
     "about": "Über mich",
     "projects": "Projekte",
     "contact": "Kontakt",
     "language": "Sprache",
-    "themeToggle": "Thema wechseln"
+    "themeToggle": "themeToggle"
   },
   "about": {
     "title": "Über mich",
     "intro": "Willkommen, ich bin ",
     "name": "Marcell Döme Kisbalázs  ",
-    "description": "ein Full Stack Developer. Ich habe Erfahrung sowohl in der Frontend- als auch in der Backend-Entwicklung und genieße Projekte, die meine Fähigkeiten und Kreativität herausfordern. ",
-    "moreInfo": "Ich bemühe mich ständig, mein Wissen und meine Fähigkeiten in der Softwareentwicklung zu verbessern."
+    "description": "ein Full Stack Developer. Ich habe Erfahrung sowohl in der Frontend- als auch in der Backend-Entwicklung und genieße Projekte, die meine Fähigkeiten fördern. ",
+    "moreInfo": "Ich bemühe mich ständig, mein Wissen und meine Fähigkeiten zu verbessern."
   },
   "contact": {
-    "title": "Nehmen Sie Kontakt auf",
+    "title": "Lernen Sie mich Kennen!",
     "subtitle": "Wenn Sie mich kontaktieren möchten, finden Sie mich auf den folgenden Plattformen.",
     "downloadCv": "Lebenslauf herunterladen"
   },
   "projects": { "title": "Projekte" },
   "footer": {
     "name": "Döme Marcell Kisbalázs",
-    "explore": "Weitere Seiten",
-    "home": "Startseite",
+    "explore": "Entdecke",
+    "home": "Home",
     "about": "Über mich",
     "projects": "Projekte",
     "contact": "Kontakt",
-    "connect": "Kontaktieren",
+    "connect": "Socials",
     "rights": "Alle Rechte vorbehalten: Döme Marcell Kisbalázs"
   },
   "experience": {

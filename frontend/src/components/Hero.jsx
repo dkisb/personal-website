@@ -61,15 +61,17 @@ export default function Hero() {
 
             {/* Location */}
             <Stack direction="row" spacing={1} alignItems="center">
-              <Typography variant="h5" color="text.secondary">
+              <Typography
+                variant="h5"
+                sx={{
+                  fontWeight: 700,
+                  color: 'primary.main',
+                }}
+                color="primary.main"
+              >
                 Based in
               </Typography>
-              <Box
-                component="img"
-                src={huFlag}
-                alt="Hungarian flag"
-                sx={{ width: 32, height: 32, borderRadius: '50%' }}
-              />
+              <Box component="img" src={huFlag} alt="Hungarian flag" sx={{ width: 35, height: 35 }} />
             </Stack>
           </Stack>
 

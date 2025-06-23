@@ -43,6 +43,14 @@ export default function Navbar({ toggleTheme, mode }) {
 
   const isHomePage = location.pathname === '/';
 
+  // Scroll to top after navigation (for SPA)
+  const handleContactClick = (e) => {
+    // Let RouterLink finish navigation first, then scroll!
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 0);
+  };
+
   return (
     <>
       <CssBaseline />
@@ -81,9 +89,13 @@ export default function Navbar({ toggleTheme, mode }) {
                       <ListItemText
                         primary={
                           isExternal ? (
-                            <a href={section} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <RouterLink
+                              to={route}
+                              style={{ textDecoration: 'none', color: 'inherit' }}
+                              onClick={handleContactClick}
+                            >
                               {text}
-                            </a>
+                            </RouterLink>
                           ) : isHomePage ? (
                             <ScrollLink
                               to={section}
@@ -131,7 +143,7 @@ export default function Navbar({ toggleTheme, mode }) {
           </>
         ) : (
           <>
-            <NavButtons navItems={navItems} isHomePage={isHomePage} />
+            <NavButtons navItems={navItems} isHomePage={isHomePage} handleContactClick={handleContactClick} />
             <Box sx={{ position: 'absolute', right: 24 }}>
               <NavToggles mode={mode} toggleTheme={toggleTheme} languages={languages} i18n={i18n} />
             </Box>

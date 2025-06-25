@@ -1,7 +1,8 @@
 {
   "hero": {
     "title": "Welcome to my Portfolio!",
-    "subtitle": "Full Stack Developer",
+    "subtitle1": "Full Stack Developer ",
+    "subtitle2": "based in",
     "cta": "Contact Me"
   },
   "navbar": {

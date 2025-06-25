@@ -20,6 +20,8 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { useTranslation } from 'react-i18next';
 import NavButtons from './NavButtons';
 import NavToggles from './NavToggles';
+import lightLogo from '../assets/logo-light.svg';
+import darkLogo from '../assets/logo-dark.svg';
 
 export default function Navbar({ toggleTheme, mode }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -27,6 +29,7 @@ export default function Navbar({ toggleTheme, mode }) {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { t, i18n } = useTranslation();
   const location = useLocation();
+  const LogoIcon = mode === 'dark' ? darkLogo : lightLogo;
 
   const languages = [
     { code: 'en', flag: '/en.svg' },
@@ -45,7 +48,6 @@ export default function Navbar({ toggleTheme, mode }) {
 
   // Scroll to top after navigation (for SPA)
   const handleContactClick = (e) => {
-    // Let RouterLink finish navigation first, then scroll!
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 0);
@@ -73,6 +75,30 @@ export default function Navbar({ toggleTheme, mode }) {
           boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
         }}
       >
+        {/* LOGO ON THE LEFT */}
+        <Box
+          sx={{
+            position: 'absolute',
+            left: 24,
+            display: 'flex',
+            alignItems: 'center',
+            height: '100%',
+          }}
+        >
+          <RouterLink to="/" style={{ display: 'flex', alignItems: 'center' }}>
+            <Box
+              component="img"
+              src={LogoIcon}
+              alt="Logo"
+              sx={{
+                width: { xs: 52, sm: 60, md: 70 },
+                height: 'auto',
+                maxHeight: 56,
+              }}
+            />
+          </RouterLink>
+        </Box>
+
         {isMobile ? (
           <>
             <Box sx={{ position: 'absolute', right: 24 }}>

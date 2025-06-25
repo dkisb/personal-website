@@ -34,6 +34,28 @@ export const ThemeWrapper = ({ children }) => {
     lightBluePaper: '#F6FAFF', // For paper/cards
   };
 
+  // Ensure theme.shadows is an array of 25 items to avoid MUI elevation warnings
+  function buildShadows(mode) {
+    // MUI default shadows
+    const defaultShadows = [
+      'none',
+      '0px 1px 3px rgba(0,0,0,0.2), 0px 1px 1px rgba(0,0,0,0.14), 0px 2px 1px rgba(0,0,0,0.12)',
+      '0px 1.5px 5px rgba(0,0,0,0.2), 0px 2px 2px rgba(0,0,0,0.14), 0px 3px 1px rgba(0,0,0,0.12)',
+      '0px 3px 10px rgba(0,0,0,0.2), 0px 3px 3px rgba(0,0,0,0.14), 0px 4px 2px rgba(0,0,0,0.12)',
+      // 4
+      mode === 'light' ? `0 4px 16px 0 ${NEON.pink}` : `0 4px 24px 0 ${NEON.green}`,
+      // 5-7: default
+      '0px 5px 15px rgba(0,0,0,0.2), 0px 6px 6px rgba(0,0,0,0.14), 0px 8px 4px rgba(0,0,0,0.12)',
+      '0px 6px 20px rgba(0,0,0,0.2), 0px 7px 7px rgba(0,0,0,0.14), 0px 10px 5px rgba(0,0,0,0.12)',
+      '0px 7px 25px rgba(0,0,0,0.2), 0px 8px 8px rgba(0,0,0,0.14), 0px 12px 6px rgba(0,0,0,0.12)',
+      // 8
+      mode === 'light' ? `0 8px 32px 0 ${NEON.blue}` : `0 8px 32px 0 ${NEON.pink}`,
+    ];
+    // Fill up to 25 with reasonable defaults if missing
+    while (defaultShadows.length < 25) defaultShadows.push('none');
+    return defaultShadows;
+  }
+
   const theme = useMemo(
     () =>
       createTheme({
@@ -115,17 +137,7 @@ export const ThemeWrapper = ({ children }) => {
                 },
               }),
         },
-        shadows: {
-          ...(mode === 'light'
-            ? {
-                4: '0 4px 16px 0 ' + NEON.pink,
-                8: '0 8px 32px 0 ' + NEON.blue,
-              }
-            : {
-                4: '0 4px 24px 0 ' + NEON.green,
-                8: '0 8px 32px 0 ' + NEON.pink,
-              }),
-        },
+        shadows: buildShadows(mode),
         typography: {
           fontFamily: "'Press Start 2P','Inter',monospace,sans-serif",
           h1: {

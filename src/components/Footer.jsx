@@ -4,7 +4,8 @@ import { Link as ScrollLink } from 'react-scroll';
 import { useTheme } from '@mui/material/styles';
 import { Twitter, GitHubLight, GitHubDark, LinkedIn, Gmail } from 'developer-icons';
 import { useTranslation } from 'react-i18next';
-import logo from '../assets/D-logo.svg';
+import lightLogo from '../assets/logo-light.svg';
+import darkLogo from '../assets/logo-dark.svg';
 
 export default function Footer() {
   const theme = useTheme();
@@ -13,6 +14,7 @@ export default function Footer() {
   const location = useLocation(); // Get current route
 
   const GitHubIcon = isDark ? GitHubLight : GitHubDark;
+  const LogoIcon = isDark ? darkLogo : lightLogo;
 
   const navItems = [
     { text: t('footer.home'), section: 'hero', route: '/', offset: 0 },
@@ -31,29 +33,36 @@ export default function Footer() {
           display="flex"
           flexDirection={{ xs: 'column', md: 'row' }}
           justifyContent="space-between"
-          alignItems={{ xs: 'center', md: 'flex-start' }}
+          alignItems="flex-start"
           gap={6}
           mb={4}
         >
-          {/* Logo Section */}
-          <Box textAlign={{ xs: 'center', md: 'left' }} flex={1}>
+          {/* Logo Section - always on the left, responsive width */}
+          <Box
+            flexBasis={{ xs: '100%', md: '25%' }}
+            flexShrink={0}
+            flexGrow={0}
+            display="flex"
+            alignItems="center"
+            justifyContent={{ xs: 'center', md: 'flex-start' }}
+            mb={{ xs: 3, md: 0 }}
+            sx={{ minWidth: 0 }}
+          >
             <Box
               component="img"
-              src={logo}
+              src={LogoIcon}
               alt="Logo"
               sx={{
-                width: { xs: 100, md: 140 },
+                width: { xs: 180, sm: 210, md: 220, lg: 240 },
                 maxWidth: '100%',
-                mb: 1,
+                height: 'auto',
+                display: 'block',
               }}
             />
-            <Typography variant="subtitle2" color="text.secondary">
-              {t('footer.name')}
-            </Typography>
           </Box>
 
           {/* Explore Section */}
-          <Box textAlign={{ xs: 'center', md: 'left' }} flex={1}>
+          <Box flex={{ xs: '1 1 0%', md: '1 1 0%' }} textAlign={{ xs: 'center', md: 'left' }} minWidth={0}>
             <Typography variant="h6" fontWeight="bold" mb={1}>
               {t('footer.explore')}
             </Typography>
@@ -75,7 +84,7 @@ export default function Footer() {
           </Box>
 
           {/* Connect Section */}
-          <Box textAlign={{ xs: 'center', md: 'left' }} flex={1}>
+          <Box flex={{ xs: '1 1 0%', md: '1 1 0%' }} textAlign={{ xs: 'center', md: 'left' }} minWidth={0}>
             <Typography variant="h6" fontWeight="bold" mb={1}>
               {t('footer.connect')}
             </Typography>

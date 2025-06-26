@@ -29,7 +29,7 @@ export default function Navbar({ toggleTheme, mode }) {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { t, i18n } = useTranslation();
   const location = useLocation();
-  const LogoIcon = mode === 'dark' ? darkLogo : lightLogo;
+  const LogoIcon = theme.palette.mode === 'dark' ? darkLogo : lightLogo;
 
   const languages = [
     { code: 'en', flag: '/en.svg' },
